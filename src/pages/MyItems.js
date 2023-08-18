@@ -45,6 +45,10 @@ const MyItemsPage = () => {
             background: "#FFFFF0",
             paddingLeft: "1%",
             paddingRight: "1%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
           }}
         >
           {myListProducts.length > 0 ? (
