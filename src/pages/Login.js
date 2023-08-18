@@ -65,7 +65,10 @@ const LoginPage = () => {
       <h1>Login</h1>
 
       {auth.user ? (
-        <div>Welcome {auth.user}, your login is successful</div>
+        <div>
+          <div>Welcome {auth.user}, your login is successful</div>
+          <button onClick={() => setAuth({})}>Logout</button>
+        </div>
       ) : (
         <Formik
           initialValues={initialValues}
