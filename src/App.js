@@ -14,7 +14,7 @@ function App() {
       <Link to="/">Home</Link>
       <Link to="/login">Login</Link>
       <Link to="/myitems">My Items</Link>
-      <Link to="/additem">List Item</Link>
+      <Link to="/additem">Add Item</Link>
 
       <Routes>
         <Route exact path="/" element={<Home />} />

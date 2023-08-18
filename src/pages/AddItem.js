@@ -1,13 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../context/authProvider";
 import * as Yup from "yup";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 
 const MyItemsPage = () => {
   const { auth } = useContext(AuthContext);
-  const [myListProducts, setMyListProducts] = useState([]);
+  const [isPostErr, setIsPostErr] = useState(false);
+  const [isPostSuccess, setIsPostSuccess] = useState(false);
 
   const initialValues = {
     itemName: "",
@@ -23,55 +24,39 @@ const MyItemsPage = () => {
     price: Yup.number().moreThan(0).required("Required"),
   });
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, { resetForm }) => {
     try {
+      console.log(values);
       const token = localStorage.getItem("token");
       const { itemName, itemDesc, imgUrl, price } = values;
-      const newProduct = {
+      const newProductData = {
         seller_id: auth.id,
         seller_name: auth.user,
         item_name: itemName,
         item_desc: itemDesc,
-        img_url: imgUrl,
         price: price,
+        img_url: imgUrl,
       };
 
       // Get token from localstorage, add "bearer" to header via axios post request and add product data
-      const response = await axios
-        .post(`http://localhost:3001/products/${auth.id}`, {
+      await axios
+        .post(`http://localhost:3001/products`, newProductData, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          const products = res.data;
-          var arr = [];
-          Object.keys(products).forEach((key) => arr.push(products[key]));
-          // console.log("val.data", arr);
+          // if success, add success message for 1sec and clear all input fields
+          if (res.status === 201) {
+            setIsPostSuccess(true);
+            resetForm({ values: "" });
+            setTimeout(() => setIsPostSuccess(false), 1000);
+          }
         });
-
-      if (response.data) {
-        // For context
-        console.log("values", response);
-      }
     } catch (error) {
-      console.log("error", error);
+      // Error connecting to server
+      setIsPostErr(true);
+      console.log("Post item error", error);
     }
   };
-
-  async function addProduct() {
-    const token = localStorage.getItem("token");
-    console.log("token", token);
-
-    await axios
-      .post(`http://localhost:3001/products/${auth.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        const products = res.data;
-        var arr = [];
-        Object.keys(products).forEach((key) => arr.push(products[key]));
-        // console.log("val.data", arr);
-      });
-  }
 
   return (
     <>
@@ -79,6 +64,7 @@ const MyItemsPage = () => {
         <h1>List Product</h1>
         <Row
           style={{
+            width: "100%",
             background: "#FFFFF0",
             paddingLeft: "1%",
             paddingRight: "1%",
@@ -90,37 +76,49 @@ const MyItemsPage = () => {
             onSubmit={handleSubmit}
           >
             <Form>
-              <div>
-                <label htmlFor="itemName">Item Name</label>
-                <Field type="text" id="itemName" name="itemName" />
-                <ErrorMessage
-                  name="itemName"
-                  component="div"
-                  className="error"
-                />
-              </div>
-              <div>
-                <label htmlFor="itemDesc">Item Description</label>
-                <Field type="text" id="itemDesc" name="itemDesc" />
-                <ErrorMessage
-                  name="itemDesc"
-                  component="div"
-                  className="error"
-                />
-              </div>
-              <div>
-                <label htmlFor="imgUrl">Link to image</label>
-                <Field type="text" id="imgUrl" name="imgUrl" />
-                <ErrorMessage name="imgUrl" component="div" className="error" />
-              </div>
-              <div>
-                <label htmlFor="price">Price</label>
-                <Field type="number" id="price" name="price" />
-                <ErrorMessage name="price" component="div" className="error" />
-              </div>
-              <button type="submit">Submit</button>
+              <Container style={{ width: "100%" }}>
+                <Row>
+                  <label htmlFor="itemName">Item Name</label>
+                  <Field type="text" id="itemName" name="itemName" />
+                  <ErrorMessage
+                    name="itemName"
+                    component="div"
+                    className="error"
+                  />
+                </Row>
+                <div>
+                  <label htmlFor="itemDesc">Item Description</label>
+                  <Field type="text" id="itemDesc" name="itemDesc" />
+                  <ErrorMessage
+                    name="itemDesc"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="imgUrl">Link to image</label>
+                  <Field type="text" id="imgUrl" name="imgUrl" />
+                  <ErrorMessage
+                    name="imgUrl"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="price">Price</label>
+                  <Field type="number" id="price" name="price" />
+                  <ErrorMessage
+                    name="price"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <button type="submit">Submit</button>
+              </Container>
             </Form>
           </Formik>
+          {isPostErr && <div>Unable to add new product</div>}
+          {isPostSuccess && <div>Product added</div>}
         </Row>
       </Container>
     </>
