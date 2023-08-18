@@ -23,7 +23,6 @@ const HomePage = () => {
         if (searchInput === "") {
           setFilteredData(arr);
         }
-        // console.log("val.data", arr);
       });
     } catch (error) {
       console.log("Error", error);

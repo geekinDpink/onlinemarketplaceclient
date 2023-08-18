@@ -39,7 +39,7 @@ const MyItemsPage = () => {
   return (
     <>
       <Container>
-        <h1>Welcome {auth.user}!</h1>
+        <h1>Product listed by {auth.user}</h1>
         <Row
           style={{
             background: "#FFFFF0",
