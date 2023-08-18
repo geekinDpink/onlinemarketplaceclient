@@ -11,7 +11,7 @@ import { RequireAuth } from "./context/requireAuth.js";
 function App() {
   return (
     <>
-      <div style={{ height: "50px", backgroundColor: "pink" }}>
+      <div style={{ height: "50px", backgroundColor: "rgb(210, 197, 200)" }}>
         <Link
           to="/"
           style={{ margin: "5px", fontWeight: "bold", fontSize: "20px" }}
