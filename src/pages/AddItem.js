@@ -61,7 +61,7 @@ const MyItemsPage = () => {
   return (
     <>
       <Container>
-        <h1>List Product</h1>
+        <h1>List product</h1>
         <Row
           style={{
             width: "100%",

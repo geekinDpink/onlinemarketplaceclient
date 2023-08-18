@@ -11,11 +11,32 @@ import { RequireAuth } from "./context/requireAuth.js";
 function App() {
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/myitems">My Items</Link>
-      <Link to="/additem">Add Item</Link>
-
+      <div style={{ height: "50px", backgroundColor: "pink" }}>
+        <Link
+          to="/"
+          style={{ margin: "5px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          Home
+        </Link>
+        <Link
+          to="/myitems"
+          style={{ margin: "5px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          My Items
+        </Link>
+        <Link
+          to="/additem"
+          style={{ margin: "5px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          Add Item
+        </Link>
+        <Link
+          to="/login "
+          style={{ margin: "5px", fontWeight: "bold", fontSize: "20px" }}
+        >
+          Login
+        </Link>
+      </div>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
