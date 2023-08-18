@@ -9,6 +9,8 @@ import axios from "axios";
 const HomePage = () => {
   const { auth } = useContext(AuthContext);
   const [listProducts, setListProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   async function getProduct() {
     // Prevent Uncaught runtime errors: Network Err, if server not available
@@ -18,6 +20,9 @@ const HomePage = () => {
         var arr = [];
         Object.keys(products).forEach((key) => arr.push(products[key]));
         setListProducts(arr);
+        if (searchInput === "") {
+          setFilteredData(arr);
+        }
         // console.log("val.data", arr);
       });
     } catch (error) {
@@ -27,11 +32,28 @@ const HomePage = () => {
 
   useEffect(() => {
     const allProducts = getProduct();
-    // setListProducts(allProducts.data);
   }, []);
 
-  // console.log("listProducts", listProducts);
-  // console.log("listProducts", typeof listProducts);
+  useEffect(() => {
+    console.log("useEffect searchinput", searchInput);
+    if (searchInput === "") {
+      setFilteredData(listProducts);
+    } else {
+      console.log("initial input: listproducts state", listProducts);
+      let newProductsData = listProducts.filter((product) => {
+        console.log("product", product.item_name);
+        return product.item_name
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      console.log("output", newProductsData);
+
+      setFilteredData(newProductsData);
+    }
+  }, [searchInput]);
+
+  console.log("listProducts", listProducts);
+  console.log("filteredData", filteredData);
 
   const mockfn = () => {};
 
@@ -42,7 +64,7 @@ const HomePage = () => {
         <Row>
           <Formik
             onSubmit={async (values) => {
-              //await getAllStall();
+              await getProduct(values);
             }}
           >
             <Form>
@@ -68,7 +90,7 @@ const HomePage = () => {
                       name="searchStall"
                       placeholder="Search for stalls"
                       onChange={(e) => {
-                        //setSearchInput(e.target.value);
+                        setSearchInput(e.target.value);
                         // console.log(searchInput);
                         // searchFilter(e);
                       }}
@@ -87,8 +109,8 @@ const HomePage = () => {
             paddingRight: "1%",
           }}
         >
-          {listProducts.length > 0 ? (
-            listProducts.map((pdt) => {
+          {filteredData.length > 0 ? (
+            filteredData.map((pdt) => {
               return (
                 <ItemCard
                   pdt={pdt}
