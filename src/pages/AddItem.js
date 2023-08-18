@@ -62,6 +62,13 @@ const MyItemsPage = () => {
     <>
       <Container>
         <h1>List product</h1>
+        <Row>
+          <p>
+            Please fill in all the fields and click on the submit button to list
+            your product. Do note that you have to provide a link to the image.
+            For testing purpose, you may provide image url on unsplash.
+          </p>
+        </Row>
         <Row
           style={{
             width: "100%",
@@ -162,6 +169,13 @@ const MyItemsPage = () => {
           {isPostSuccess && <div>Product added</div>}
         </Row>
       </Container>
+
+      <Row>
+        <p style={{ fontSize: "13px" }}>
+          (For testing purpose) Sample image url:
+          https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80
+        </p>
+      </Row>
     </>
   );
 };

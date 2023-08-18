@@ -69,6 +69,18 @@ const HomePage = () => {
       >
         <h1>Welcome {auth.user}!</h1>
         <Row>
+          <p>
+            Online marketplace is the best place to find and sell your products.
+            You can find any products you want in the list of item below. If you
+            have difficulty finding a product, you may key the product name into
+            the search bar below.
+          </p>
+          <p>
+            Do note that you need to login to list your products for sale and
+            view the product you list.
+          </p>
+        </Row>
+        <Row>
           <Formik
             onSubmit={async (values) => {
               await getProduct(values);
