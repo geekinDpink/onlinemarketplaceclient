@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import axios from "axios";
 import AuthContext from "../context/authProvider";
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
+
 // import { useAuth } from "../utilis/auth"; // authProvider v1
 
 const LoginPage = () => {
@@ -71,15 +73,41 @@ const LoginPage = () => {
           onSubmit={handleSubmit}
         >
           <Form>
-            <div>
-              <label htmlFor="username">Username</label>
-              <Field type="text" id="username" name="username" />
-              <ErrorMessage name="username" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <Field type="password" id="password" name="password" />
-              <ErrorMessage name="password" component="div" className="error" />
+            <div
+              style={{ width: "100%", display: "flex", marginBottom: "5px" }}
+            >
+              <div style={{ width: "6%", marginRight: "0px" }}>
+                <label htmlFor="username">Username</label>
+              </div>
+              <div style={{ width: "94%", marginLeft: "0px" }}>
+                <Field type="text" id="username" name="username" />
+                <br />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  className="error"
+                />
+              </div>
+            </div>{" "}
+            <div
+              style={{ width: "100%", display: "flex", marginBottom: "5px" }}
+            >
+              <div style={{ width: "6%", marginRight: "0px" }}>
+                <label
+                  htmlFor="password"
+                  style={{ marginLeft: 0, marginRight: "10px", width: "40%" }}
+                >
+                  Password
+                </label>
+              </div>
+              <div style={{ width: "94%", marginLeft: "0px" }}>
+                <Field type="password" id="password" name="password" /> <br />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+              </div>
             </div>
             <button type="submit">Submit</button>
           </Form>

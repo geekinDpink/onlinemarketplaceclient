@@ -15,8 +15,7 @@ export default function ItemCard({ pdt, handleShow, setModalStall }) {
         className="ItemCard"
         key={pdt.id}
         id={pdt.item_name}
-        style={{ width: "31%", margin: "1.1%" }}
-        // onClick={(e) => handleClick(e)}
+        style={{ width: "20%", margin: "1.1%", height: "100%" }}
       >
         <Card.Img
           src={pdt.img_url}

@@ -59,7 +59,15 @@ const HomePage = () => {
 
   return (
     <>
-      <Container>
+      <Container
+        style={{
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: "80%",
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      >
         <h1>Welcome {auth.user}!</h1>
         <Row>
           <Formik
@@ -72,7 +80,6 @@ const HomePage = () => {
                 style={{
                   marginLeft: "auto",
                   marginRight: "auto",
-                  width: "50%",
                   marginTop: "20px",
                   marginBottom: "20px",
                 }}
@@ -86,15 +93,13 @@ const HomePage = () => {
                 >
                   <Col md={12}>
                     <Field
-                      id="searchStall"
-                      name="searchStall"
-                      placeholder="Search for stalls"
+                      id="searchItem"
+                      name="searchItem"
+                      placeholder="Search By Item Name"
                       onChange={(e) => {
                         setSearchInput(e.target.value);
-                        // console.log(searchInput);
-                        // searchFilter(e);
                       }}
-                      style={{ width: "60%" }}
+                      style={{ width: "40%" }}
                     />
                   </Col>
                 </Row>
@@ -107,6 +112,10 @@ const HomePage = () => {
             background: "#FFFFF0",
             paddingLeft: "1%",
             paddingRight: "1%",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
           }}
         >
           {filteredData.length > 0 ? (

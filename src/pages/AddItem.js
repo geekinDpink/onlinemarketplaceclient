@@ -77,41 +77,82 @@ const MyItemsPage = () => {
           >
             <Form>
               <Container style={{ width: "100%" }}>
-                <Row>
-                  <label htmlFor="itemName">Item Name</label>
-                  <Field type="text" id="itemName" name="itemName" />
-                  <ErrorMessage
-                    name="itemName"
-                    component="div"
-                    className="error"
-                  />
-                </Row>
-                <div>
-                  <label htmlFor="itemDesc">Item Description</label>
-                  <Field type="text" id="itemDesc" name="itemDesc" />
-                  <ErrorMessage
-                    name="itemDesc"
-                    component="div"
-                    className="error"
-                  />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <div style={{ width: "8%", marginRight: "0px" }}>
+                    <label htmlFor="itemName">Item Name</label>
+                  </div>
+                  <div style={{ width: "92%", marginLeft: "0px" }}>
+                    <Field type="text" id="itemName" name="itemName" />
+                    <br></br>
+                    <ErrorMessage
+                      name="itemName"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="imgUrl">Link to image</label>
-                  <Field type="text" id="imgUrl" name="imgUrl" />
-                  <ErrorMessage
-                    name="imgUrl"
-                    component="div"
-                    className="error"
-                  />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <div style={{ width: "8%", marginRight: "0px" }}>
+                    <label htmlFor="itemDesc">Item Desc</label>
+                  </div>
+                  <div style={{ width: "92%", marginLeft: "0px" }}>
+                    <Field type="text" id="itemDesc" name="itemDesc" />
+                    <ErrorMessage
+                      name="itemDesc"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="price">Price</label>
-                  <Field type="number" id="price" name="price" />
-                  <ErrorMessage
-                    name="price"
-                    component="div"
-                    className="error"
-                  />
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <div style={{ width: "8%", marginRight: "0px" }}>
+                    <label htmlFor="imgUrl">Link to image</label>
+                  </div>
+                  <div style={{ width: "92%", marginLeft: "0px" }}>
+                    <Field type="text" id="imgUrl" name="imgUrl" />
+                    <ErrorMessage
+                      name="imgUrl"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <div style={{ width: "8%", marginRight: "0px" }}>
+                    <label htmlFor="price">Price</label>
+                  </div>
+                  <div style={{ width: "92%", marginLeft: "0px" }}>
+                    <Field type="number" id="price" name="price" />
+                    <ErrorMessage
+                      name="price"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
                 </div>
                 <button type="submit">Submit</button>
               </Container>
