@@ -67,7 +67,14 @@ const LoginPage = () => {
       {auth.user ? (
         <div>
           <div>Welcome {auth.user}, your login is successful</div>
-          <button onClick={() => setAuth({})}>Logout</button>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              setAuth({});
+            }}
+          >
+            Logout
+          </button>
         </div>
       ) : (
         <Formik
